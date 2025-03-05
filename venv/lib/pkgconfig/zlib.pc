@@ -1,0 +1,13 @@
+prefix=/Users/saurabhsingh/Desktop/AI Agent project/venv
+exec_prefix=/Users/saurabhsingh/Desktop/AI Agent project/venv
+libdir=/Users/saurabhsingh/Desktop/AI Agent project/venv/lib
+sharedlibdir=/Users/saurabhsingh/Desktop/AI Agent project/venv/lib
+includedir=/Users/saurabhsingh/Desktop/AI Agent project/venv/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.13
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}
