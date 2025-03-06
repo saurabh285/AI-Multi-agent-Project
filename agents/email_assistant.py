@@ -47,14 +47,22 @@ def summarize_emails(emails):
     return response.text if response else "Failed to generate summary."
 
 def generate_smart_replies(email):
-    """Generate AI-powered smart reply suggestions for an email."""
+    """Generate clean, professional smart reply suggestions for an email."""
     model = genai.GenerativeModel("gemini-1.5-flash")
-    prompt = f"Generate three short, polite, and professional reply suggestions for this email:\nSubject: {email['subject']}\nSnippet: {email['snippet']}"
+    prompt = (
+        "Generate three short, polite, and professional reply suggestions for the following email.\n"
+        "DO NOT number or format the replies, and avoid empty lines.\n\n"
+        f"Subject: {email['subject']}\nSnippet: {email['snippet']}"
+    )
     response = model.generate_content(prompt)
 
     if response and response.text:
-        return response.text.split("\n")[:3]  # Return the first 3 suggestions
+        # Cleanly parse replies, ignoring empty lines
+        replies = [line.strip().strip('"').strip("'") for line in response.text.split("\n") if line.strip()]
+        # Limit to exactly three replies
+        return replies[:3] if replies else ["No reply suggestions available."]
     return ["No reply suggestions available."]
+
 
 def save_to_file(emails, summary, filename="email_summaries.txt"):
     """Save email summaries and smart replies to a file (overwrite if exists)."""
