@@ -23,10 +23,7 @@ GMAIL_API_KEY=your-gmail-api-key
 CALENDAR_API_KEY=your-calendar-api-key
 ```
 
-### **5️⃣ Run the Streamlit Dashboard**
-```bash
-streamlit run dashboard.py
-```
+
 
 ## **Usage**
 - **Run individual AI agents** or **execute all tasks at once**
